@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import SearchBar from "@/components/SearchBar";
 
 const Home = () => {
 	return (
@@ -24,7 +25,19 @@ const Home = () => {
 							Powerful, self-serve product and growth analytics to help you
 							convert, engage and retain more.
 						</p>
+						<SearchBar />
+						HeroCarousel
 					</div>
+				</div>
+			</section>
+			<section className="tending-section">
+				<h2 className="section-text">Trending</h2>
+				<div className="flex flex-wrap gap-x-8 gap-y-16">
+					{["Apple", "Steak", "Pirate Cookies", "Bubble 12px (Blackberry)"].map(
+						(product) => (
+							<div key={product}>{product}</div>
+						)
+					)}
 				</div>
 			</section>
 		</>
