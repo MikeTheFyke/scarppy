@@ -30,7 +30,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-			<section className="tending-section">
+			<section className="trending-section">
 				<h2 className="section-text">Trending</h2>
 				<div className="flex flex-wrap gap-x-8 gap-y-16">
 					{["Apple", "Steak", "Pirate Cookies", "Bubble 12px (Blackberry)"].map(
