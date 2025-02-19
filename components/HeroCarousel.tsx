@@ -14,7 +14,7 @@ const heroImages = [
 
 const HeroCarousel = () => {
 	return (
-		<div>
+		<div className="hero-carousel">
 			<Carousel
 				autoPlay
 				infiniteLoop
@@ -34,6 +34,13 @@ const HeroCarousel = () => {
 					/>
 				))}
 			</Carousel>
+			<Image
+				src="assets/icons/hand-drawn-arrow.svg"
+				alt="arrow"
+				width={175}
+				height={175}
+				className="max-xl:hidden absolute bottom-0 -left-[15%] x-0"
+			/>
 		</div>
 	);
 };
