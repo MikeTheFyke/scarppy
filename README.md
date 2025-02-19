@@ -8,3 +8,5 @@ https://brightdata.com/products/web-unlocker
 Dependencies
 
 - react-responsive-carousel
+- axios
+- cheerio
