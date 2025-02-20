@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { extractCurrency, extractPrice } from "../utils";
+import { extractCurrency, extractDescription, extractPrice } from "../utils";
 
 export async function scrapeAmazonProduct(url: string) {
 	if (!url) return;
@@ -50,6 +50,7 @@ export async function scrapeAmazonProduct(url: string) {
 		const imageUrls = Object.keys(JSON.parse(images));
 		const currency = extractCurrency($(".a-price-symbol"));
 		const discountRate = $(".savingsPercentage").text().replace(/[-%]/g, "");
+		const description = extractDescription($);
 		///
 		/// My test function to concat prices fetched
 		const concatPrice = $("span.a-price-whole")
@@ -65,23 +66,32 @@ export async function scrapeAmazonProduct(url: string) {
 			title,
 			image: imageUrls[0],
 			currency: currency || "$",
-			currentPrice: Number(
-				currentPrice.substring(0, currentPrice.indexOf("."))
-			),
-			originalPrice: Number(originalPrice),
+			currentPrice:
+				Number(currentPrice.substring(0, currentPrice.indexOf("."))) ||
+				Number(originalPrice),
+			originalPrice:
+				Number(originalPrice) ||
+				Number(currentPrice.substring(0, currentPrice.indexOf("."))),
 			concatPrice: Number(concatPrice),
+			lowestPrice:
+				Number(currentPrice.substring(0, currentPrice.indexOf("."))) ||
+				Number(originalPrice),
+			highestPrice:
+				Number(originalPrice) ||
+				Number(currentPrice.substring(0, currentPrice.indexOf("."))),
+			averagePrice:
+				Number(currentPrice.substring(0, currentPrice.indexOf("."))) ||
+				Number(originalPrice),
+			priceHistory: [],
+			discountRate: Number(discountRate),
 			category: "category",
+			description,
 			reviewsCount: 100,
 			stars: 4.5,
 			isOutOfStock: outOfStock,
 		};
-		// console.log("Current : " + currentPrice);
-		// console.log("CurrentCents : " + currentPriceCents);
-		// console.log("Original : " + originalPrice);
-		// console.log("Images : ", imageUrls);
-		// console.log("Discount : ", discountRate);
-		// console.log("Currency : ", currency);
-		// console.log(data);
+
+		return data;
 	} catch (error: any) {
 		throw new Error(`Failed to scrape product: ${error.message}`);
 	}
