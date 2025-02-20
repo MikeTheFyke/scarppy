@@ -16,7 +16,8 @@ const isValidAmazonProductURL = (url: string) => {
 		) {
 			return true;
 		}
-	} catch (error) {
+	} catch (error: any) {
+		console.log(error.message);
 		return false;
 	}
 	return false;
