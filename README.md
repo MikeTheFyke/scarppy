@@ -10,3 +10,4 @@ Dependencies
 - react-responsive-carousel
 - axios
 - cheerio
+- mongoose
