@@ -27,9 +27,9 @@ export async function scrapeAmazonProduct(url: string) {
 		// console.log(response.data);
 		const title = $("#productTitle").text().trim();
 		const currentPrice = extractPrice(
-			// $(".priceToPay span.a-price-whole"),
-			// $("a.size.base.a-color-price"),
-			// $(".a-button-selected .a-color-base"),
+			$(".priceToPay span.a-price-whole"),
+			$("a.size.base.a-color-price"),
+			$(".a-button-selected .a-color-base"),
 			$("span.a-price-whole")
 		);
 		const currentPriceCents = extractPrice($("span.a-price-fraction"));
@@ -52,21 +52,36 @@ export async function scrapeAmazonProduct(url: string) {
 		const discountRate = $(".savingsPercentage").text().replace(/[-%]/g, "");
 		///
 		/// My test function to concat prices fetched
-		// console.log(
-		// 	$("span.a-price-whole")
-		// 		.text()
-		// 		.trim()
-		// 		.substring(0, currentPrice.indexOf("."))
-		// 		.concat(".", $("span.a-price-fraction").text().trim().substring(0, 2))
-		// );
+		const concatPrice = $("span.a-price-whole")
+			.text()
+			.trim()
+			.substring(0, currentPrice.indexOf("."))
+			.concat(".", $("span.a-price-fraction").text().trim().substring(0, 2));
 		///
 		///
+		// Construct data object with scraped data
+		const data = {
+			url,
+			title,
+			image: imageUrls[0],
+			currency: currency || "$",
+			currentPrice: Number(
+				currentPrice.substring(0, currentPrice.indexOf("."))
+			),
+			originalPrice: Number(originalPrice),
+			concatPrice: Number(concatPrice),
+			category: "category",
+			reviewsCount: 100,
+			stars: 4.5,
+			isOutOfStock: outOfStock,
+		};
 		// console.log("Current : " + currentPrice);
 		// console.log("CurrentCents : " + currentPriceCents);
 		// console.log("Original : " + originalPrice);
 		// console.log("Images : ", imageUrls);
-		console.log("Discount : ", discountRate);
-		console.log("Currency : ", currency);
+		// console.log("Discount : ", discountRate);
+		// console.log("Currency : ", currency);
+		// console.log(data);
 	} catch (error: any) {
 		throw new Error(`Failed to scrape product: ${error.message}`);
 	}
