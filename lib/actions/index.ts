@@ -69,8 +69,6 @@ export async function getAllProducts() {
 
 		const products = await Product.find();
 
-		if (!products) return null;
-
 		return products;
 	} catch (error: any) {
 		console.log(error.message);

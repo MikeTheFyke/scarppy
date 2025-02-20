@@ -1,4 +1,6 @@
 import type { Product } from "@/types";
+import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 interface Props {
@@ -6,7 +8,19 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
-	return <div>{product.title}</div>;
+	return (
+		<Link href={`/products/${product._id}`} className="product-card">
+			<div className="product-card_img-container">
+				<Image
+					src={product.image}
+					alt={product.title}
+					width={200}
+					height={200}
+					className="product-card_img"
+				/>
+			</div>
+		</Link>
+	);
 };
 
 export default ProductCard;
