@@ -49,6 +49,7 @@ export async function scrapeAmazonProduct(url: string) {
 			"{}";
 		const imageUrls = Object.keys(JSON.parse(images));
 		const currency = extractCurrency($(".a-price-symbol"));
+		const discountRate = $(".savingsPercentage").text().replace(/[-%]/g, "");
 		///
 		/// My test function to concat prices fetched
 		// console.log(
@@ -64,6 +65,7 @@ export async function scrapeAmazonProduct(url: string) {
 		// console.log("CurrentCents : " + currentPriceCents);
 		// console.log("Original : " + originalPrice);
 		// console.log("Images : ", imageUrls);
+		console.log("Discount : ", discountRate);
 		console.log("Currency : ", currency);
 	} catch (error: any) {
 		throw new Error(`Failed to scrape product: ${error.message}`);
