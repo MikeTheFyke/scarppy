@@ -14,6 +14,7 @@ export type Product = {
 	title: string;
 	currentPrice: number;
 	originalPrice: number;
+	concatPrice: number;
 	priceHistory: PriceHistoryItem[] | [];
 	highestPrice: number;
 	lowestPrice: number;
