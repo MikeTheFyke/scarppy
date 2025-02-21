@@ -2,13 +2,14 @@ import { getProductById } from "@/lib/actions";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import type { Product } from "@/types";
 
 type Props = {
 	params: { id: string };
 };
 
 const ProductDetails = async ({ params: { id } }: Props) => {
-	const product = await getProductById(id);
+	const product: Product = await getProductById(id);
 
 	if (!product) redirect("/");
 
@@ -41,8 +42,27 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 						<div className="flex items-center gap-3">
 							<div className="product-hearts">
 								<Image
-									src={"/assets/icons/red-heart-svg"}
+									src="/assets/icons/red-heart.svg"
 									alt="heart"
+									width={20}
+									height={20}
+								/>
+								<p className="text-base font-semibold text-[#D46F77]">
+									{product.reviewsCount}
+								</p>
+							</div>
+							<div className="p-2 bg-white-200 rounded-10">
+								<Image
+									src="/assets/icons/bookmark.svg"
+									alt="bookmark"
+									width={20}
+									height={20}
+								/>
+							</div>
+							<div className="p-2 bg-white-200 rounded-10">
+								<Image
+									src="/assets/icons/share.svg"
+									alt="share"
 									width={20}
 									height={20}
 								/>
