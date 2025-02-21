@@ -69,6 +69,19 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 							</div>
 						</div>
 					</div>
+
+					<div className="product-info">
+						<div className="flex flex-col gap-2">
+							<p className="text-[34px] text-secondary font-bold">
+								{product.currency}
+								{product.concatPrice}
+							</p>
+							<p className="text-[21px] text-black opacity-50 line-through">
+								{product.currency}
+								{product.originalPrice}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
