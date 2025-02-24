@@ -7,6 +7,7 @@ https://brightdata.com/products/web-unlocker
 
 Dependencies
 
+- react-headlessui
 - react-responsive-carousel
 - axios
 - cheerio
