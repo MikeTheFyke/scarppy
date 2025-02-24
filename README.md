@@ -12,3 +12,4 @@ Dependencies
 - axios
 - cheerio
 - mongoose
+- nodemailer

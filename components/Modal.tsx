@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useState } from "react";
+import { Fragment, useState, type FormEvent } from "react";
 import Image from "next/image";
 import {
 	Description,
@@ -11,6 +11,19 @@ import {
 
 const Modal = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isSubmitting, setisSubmitting] = useState(false);
+	const [email, setEmail] = useState("");
+
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setisSubmitting(true);
+
+		// await addUserEmailToProduct(getProductById, email)
+
+		setisSubmitting(false);
+		setEmail("");
+		closeModal();
+	};
 
 	const openModal = () => {
 		setIsOpen(true);
@@ -80,7 +93,7 @@ const Modal = () => {
 										Never miss a bargin again with out imely alerts!
 									</p>
 								</div>
-								<form className="flex flex-col mt-5">
+								<form className="flex flex-col mt-5" onSubmit={handleSubmit}>
 									<label
 										htmlFor="email"
 										className="text-sm font-bold text-gray-700"
@@ -98,12 +111,14 @@ const Modal = () => {
 											required
 											type="email"
 											id="email"
+											value={email}
+											onChange={(e) => setEmail(e.target.value)}
 											placeholder="Enter your email address"
 											className="dialog-input"
 										/>
 									</div>
 									<button type="submit" className="dialog-btn">
-										Track
+										{isSubmitting ? "Submitting..." : "Track"}
 									</button>
 								</form>
 							</div>
