@@ -71,7 +71,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 							</div>
 						</div>
 					</div>
-
 					<div className="product-info">
 						<div className="flex flex-col gap-2">
 							<p className="text-[34px] text-secondary font-bold">
@@ -114,7 +113,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 							</p>
 						</div>
 					</div>
-
 					<div className="my-7 flex flex-col gap-5">
 						<div className="flex gap-5 flex-wrap">
 							<PriceInfoCard
@@ -123,7 +121,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								value={`${product.currency} 
 									${product.concatPrice}
 								`}
-								borderColor="#b6dbff"
 							/>
 							<PriceInfoCard
 								title="Average Price"
@@ -131,7 +128,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								value={`${product.currency} ${formatNumber(
 									product.averagePrice
 								)}`}
-								borderColor="#b6dbff"
 							/>
 							<PriceInfoCard
 								title="Highest Price"
@@ -139,7 +135,6 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								value={`${product.currency} ${formatNumber(
 									product.highestPrice
 								)}`}
-								borderColor="#b6dbff"
 							/>
 							<PriceInfoCard
 								title="Lowest Price"
@@ -147,10 +142,17 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 								value={`${product.currency} ${formatNumber(
 									product.lowestPrice
 								)}`}
-								borderColor="#b6dbff"
 							/>
 						</div>
 					</div>
+					Modal
+				</div>
+			</div>
+			<div className="flex flex-col gap-16 border-2 border-red-500">
+				<div className="flex flex-col gap-5">
+					<h1 className="text-2xl text-summary font-semibold">
+						Product Description
+					</h1>
 				</div>
 			</div>
 		</div>
