@@ -72,11 +72,13 @@ const Modal = () => {
 											onClick={closeModal}
 										/>
 									</div>
-									<h4>
+									<h4 className="dialog-head_text">
 										Stay updated with product pricing alerts right in your
 										inbox!
 									</h4>
-									<p>Never miss a bargin again with out imely alerts!</p>
+									<p className="text-sm text-gray-600 mt-2">
+										Never miss a bargin again with out imely alerts!
+									</p>
 								</div>
 								<form className="flex flex-col mt-5">
 									<label
@@ -100,6 +102,9 @@ const Modal = () => {
 											className="dialog-input"
 										/>
 									</div>
+									<button type="submit" className="dialog-btn">
+										Track
+									</button>
 								</form>
 							</div>
 						</Transition.Child>
