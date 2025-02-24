@@ -150,10 +150,25 @@ const ProductDetails = async ({ params: { id } }: Props) => {
 			</div>
 			<div className="flex flex-col gap-16 border-2 border-red-500">
 				<div className="flex flex-col gap-5">
-					<h1 className="text-2xl text-summary font-semibold">
+					<h3 className="text-2xl text-summary font-semibold">
 						Product Description
-					</h1>
+					</h3>
+					<div className="flex flex-col gap-4">
+						{/* {product?.description?.split("\n")} */}
+						{product.description.split("5 star4")[0].split("Flash Player")[1]}
+					</div>
 				</div>
+				<button className="btn w-fit mx-auto flex items-center justify-center gap-3 min-w-[200px]">
+					<Image
+						src="/assets/icons/bag.svg"
+						alt="check"
+						width={22}
+						height={22}
+					/>
+					<Link href="/" className="text-base text-white">
+						Buy Now
+					</Link>
+				</button>
 			</div>
 		</div>
 	);
