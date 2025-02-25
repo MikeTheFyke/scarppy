@@ -90,7 +90,7 @@ const Modal = () => {
 										inbox!
 									</h4>
 									<p className="text-sm text-gray-600 mt-2">
-										Never miss a bargin again with out imely alerts!
+										Never miss a bargin again with out timely alerts!
 									</p>
 								</div>
 								<form className="flex flex-col mt-5" onSubmit={handleSubmit}>
