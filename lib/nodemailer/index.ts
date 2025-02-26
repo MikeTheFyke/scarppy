@@ -1,19 +1,13 @@
+"use server";
 import type { EmailContent, EmailProductInfo, NotificationType } from "@/types";
+import { Notification } from "@/types";
 import nodemailer from "nodemailer";
 
-export const Notification = {
-	WELCOME: "WELMCOME",
-	CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
-	LOWEST_PRICE: "LOWEST_PRICE",
-	THRESHOLD_MET: "THRESHOLD_MET",
-};
-
-export const THRESHOLD_PERCENTAGE = 40;
-
-export const generateEmailBody = (
+export async function generateEmailBody(
 	product: EmailProductInfo,
 	type: NotificationType
-) => {
+) {
+	const THRESHOLD_PERCENTAGE = 40;
 	const shortenedTitle =
 		product.title.length > 20
 			? `${product.title.substring(0, 20)}...`
@@ -76,7 +70,7 @@ export const generateEmailBody = (
 	}
 
 	return { subject, body };
-};
+}
 
 const transporter = nodemailer.createTransport({
 	pool: true,
