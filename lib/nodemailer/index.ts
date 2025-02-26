@@ -1,7 +1,13 @@
 "use server";
 import type { EmailContent, EmailProductInfo, NotificationType } from "@/types";
-import { Notification } from "@/types";
 import nodemailer from "nodemailer";
+
+const Notification = {
+	WELCOME: "WELCOME",
+	CHANGE_OF_STOCK: "CHANGE_OF_STOCK",
+	LOWEST_PRICE: "LOWEST_PRICE",
+	THRESHOLD_MET: "THRESHOLD_MET",
+};
 
 export async function generateEmailBody(
 	product: EmailProductInfo,
@@ -15,6 +21,8 @@ export async function generateEmailBody(
 
 	let subject = "";
 	let body = "";
+
+	console.log("Notification Type : ", type);
 
 	switch (type) {
 		case Notification.WELCOME:
@@ -94,7 +102,7 @@ export const sendEmail = async (
 		subject: emailContent.subject,
 	};
 
-	transporter.sendEmail(mailOptions, (error: any, info: any) => {
+	transporter.sendMail(mailOptions, (error: any, info: any) => {
 		if (error) return console.log(error);
 		console.log("Email sent: ", info);
 	});
